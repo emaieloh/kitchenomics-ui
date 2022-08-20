@@ -1,0 +1,30 @@
+.ingredient-list {
+  list-style: square outside;
+}
+
+.nutrient-list {
+  list-style: none outside;
+}
+
+.ingredient-list li,
+.nutrient-list li {
+  line-height: 36px;
+}
+
+.nutrient-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.nutrient-list li span:first-child {
+  font-style: italic;
+}
+
+.nutrient-list li span:last-child {
+  font-weight: bold;
+}
+
+.nutrient-list li:nth-last-of-type(2n) {
+  background-color: #f3f3f3;
+}
