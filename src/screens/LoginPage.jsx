@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import MyContext from "../MyContext";
-import { Form, FloatingLabel, Button } from "react-bootstrap";
+import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Registration from "../components/Registration";
@@ -36,36 +36,52 @@ const LoginPage = () => {
   };
 
   return (
-    <Form onSubmit={submitLogin}>
-      <FloatingLabel controlId="Email" label="Email">
-        <Form.Control
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
+    <Container
+      id="login-container"
+      className="d-flex justify-content-center align-items-center"
+    >
+      <Form onSubmit={submitLogin} id="login" className="p-3">
+        <FloatingLabel controlId="Email" label="Email">
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mb-3"
+            required
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="Password" label="Password">
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mb-3"
+            required
+          />
+        </FloatingLabel>
+        <Button variant="dark" type="submit" className="w-100 p-2 mt-2">
+          Sign in
+        </Button>
+        <Container className="px-4 pt-4 text-center border-top mt-4">
+          <Button
+            variant="warning"
+            type="button"
+            className="p-2 w-50"
+            onClick={showModal}
+          >
+            Create an account
+          </Button>
+        </Container>
+        <Registration
+          registrationModal={registrationModal}
+          hideModal={hideModal}
+          setIsLoggedIn={setIsLoggedIn}
+          setUser={setUser}
         />
-      </FloatingLabel>
-      <FloatingLabel controlId="Password" label="Password">
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </FloatingLabel>
-      <Button type="submit">Sign in</Button>
-      <Button variant="success" type="button" onClick={showModal}>
-        Sign up
-      </Button>
-      <Registration
-        registrationModal={registrationModal}
-        hideModal={hideModal}
-        setIsLoggedIn={setIsLoggedIn}
-        setUser={setUser}
-      />
-    </Form>
+      </Form>
+    </Container>
   );
 };
 

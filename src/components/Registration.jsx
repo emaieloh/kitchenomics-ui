@@ -68,8 +68,12 @@ const Registration = (props) => {
       >
         {userError}
       </Alert>
-      <Form onSubmit={submitRegistration}>
-        <Modal.Header closeButton>
+      <Form onSubmit={submitRegistration} id="registration">
+        <Modal.Header
+          id="registration-header"
+          className="text-light bg-dark fst-italic"
+          closeButton
+        >
           <Modal.Title>Sign up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -81,6 +85,7 @@ const Registration = (props) => {
                   placeholder="First name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  className="mb-3"
                   required
                 />
               </FloatingLabel>
@@ -92,6 +97,7 @@ const Registration = (props) => {
                   placeholder="Last name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
+                  className="mb-3"
                   required
                 />
               </FloatingLabel>
@@ -103,6 +109,7 @@ const Registration = (props) => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="mb-3"
               required
             />
           </FloatingLabel>
@@ -112,6 +119,7 @@ const Registration = (props) => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="mb-3"
               required
             />
           </FloatingLabel>
@@ -121,6 +129,7 @@ const Registration = (props) => {
               placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              className="mb-3"
               required
             />
           </FloatingLabel>
@@ -134,7 +143,9 @@ const Registration = (props) => {
           </Alert>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit">Register</Button>
+          <Button type="submit" variant="dark">
+            Register
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>
