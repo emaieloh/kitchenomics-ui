@@ -9,7 +9,6 @@ import NutrientsList from "./NutrientsList";
 import Ingredients from "./Ingredients";
 import LoadingSpinner from "./LoadingSpinner";
 
-// Relocate back button
 const RecipeIngredients = () => {
   const { recipeIngHref } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
@@ -31,9 +30,9 @@ const RecipeIngredients = () => {
       const {
         data: { recipe },
       } = await axios(recipeIngHref);
+      setRecipeImage(recipe.images.REGULAR.url);
       setRecipeName(recipe.label);
       setRecipeIngredients(recipe.ingredientLines);
-      setRecipeImage(recipe.images.REGULAR.url);
       setNutrients(recipe.totalNutrients);
       setNumberOfServings(recipe.yield);
       setNutrientsList(Object.keys(recipe.totalNutrients));
@@ -43,11 +42,6 @@ const RecipeIngredients = () => {
 
   return (
     <Container className="my-2">
-      <Container>
-        <Button variant="secondary" onClick={backButton}>
-          <FaArrowLeft /> Back
-        </Button>
-      </Container>
       <Card className="p-4 col-lg-6 mx-auto">
         <Row>
           <Col>
@@ -64,8 +58,11 @@ const RecipeIngredients = () => {
             <Ingredients ingredients={recipeIngredients} />
           </Col>
           <Col>
-            <Card.Subtitle className="py-2 mb-2 border-bottom fs-4 fst-italic">
-              Nutrition
+            <Card.Subtitle className="py-2 mb-2 border-bottom d-flex justify-content-between">
+              <span className="fs-4 fst-italic lh-base">Nutrition</span>
+              <Button variant="secondary" size="sm" onClick={backButton}>
+                <FaArrowLeft /> Back
+              </Button>
             </Card.Subtitle>
             <NutrientsList
               totalNutrients={nutrients}
