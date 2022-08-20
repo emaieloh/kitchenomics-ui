@@ -9,6 +9,7 @@ import NutrientsList from "./NutrientsList";
 import Ingredients from "./Ingredients";
 import LoadingSpinner from "./LoadingSpinner";
 
+// Relocate back button
 const RecipeIngredients = () => {
   const { recipeIngHref } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
@@ -20,7 +21,6 @@ const RecipeIngredients = () => {
   const [spinner, setSpinner] = useState(true);
 
   const hideSpinner = () => setSpinner(false);
-
   const navigate = useNavigate();
   const backButton = () => {
     navigate("/", { replace: true });

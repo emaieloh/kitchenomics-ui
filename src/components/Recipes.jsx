@@ -7,19 +7,24 @@ import RecipeList from "./RecipeList";
 import RecipeIngredients from "./RecipeIngredients";
 import SearchRecipe from "./SearchRecipe";
 import NoResult from "./NoResult";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [queryText, setQueryText] = useState("");
   const [pages, setPages] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [spinner, setSpinner] = useState(false);
 
   const { recipeId } = useContext(MyContext);
   const navigate = useNavigate();
+  const showSpinner = () => setSpinner(true);
+  const hideSpinner = () => setSpinner(false);
 
   const searchHandler = async (e) => {
     e.preventDefault();
 
+    showSpinner();
     setPages([]);
     setCurrentPage(0);
     const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=2f5498b7&app_key=ccb0994fa759c8bb890e6ac4e7124c19`;
@@ -35,6 +40,7 @@ const Recipes = () => {
       }
       navigate("/", { replace: true });
     }
+    hideSpinner();
   };
 
   return (
@@ -44,6 +50,7 @@ const Recipes = () => {
         queryText={queryText}
         setQueryText={setQueryText}
       />
+      <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />
       <Routes>
         <Route
           path="/"

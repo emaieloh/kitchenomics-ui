@@ -9,15 +9,16 @@ const LoadingSpinner = ({ spinner, hideSpinner }) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Button variant="secondary" disabled>
+      <Button variant="secondary" size="sm" disabled>
         <Spinner
           as="div"
           animation="border"
           role="status"
           aria-hidden="true"
           size="lg"
+          className="align-middle"
         />
-        &nbsp;Loading...
+        &nbsp;&nbsp;Loading...
       </Button>
     </Modal>
   );
