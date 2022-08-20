@@ -7,6 +7,7 @@ import axios from "axios";
 import "./RecipeIngredients.css";
 import NutrientsList from "./NutrientsList";
 import Ingredients from "./Ingredients";
+import LoadingSpinner from "./LoadingSpinner";
 
 const RecipeIngredients = () => {
   const { recipeIngHref } = useContext(MyContext);
@@ -16,6 +17,9 @@ const RecipeIngredients = () => {
   const [nutrients, setNutrients] = useState({});
   const [nutrientsList, setNutrientsList] = useState([]);
   const [numberOfServings, setNumberOfServings] = useState(0);
+  const [spinner, setSpinner] = useState(true);
+
+  const hideSpinner = () => setSpinner(false);
 
   const navigate = useNavigate();
   const backButton = () => {
@@ -33,6 +37,7 @@ const RecipeIngredients = () => {
       setNutrients(recipe.totalNutrients);
       setNumberOfServings(recipe.yield);
       setNutrientsList(Object.keys(recipe.totalNutrients));
+      hideSpinner();
     })();
   }, []);
 
@@ -70,6 +75,7 @@ const RecipeIngredients = () => {
           </Col>
         </Row>
       </Card>
+      <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />
     </Container>
   );
 };
