@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 
 const SearchRecipe = ({ searchHandler, queryText, setQueryText }) => {
   return (
-    <Form className="w-50 mx-auto" onSubmit={searchHandler}>
+    <Form className="w-50 mx-auto mb-1" onSubmit={searchHandler}>
       <FloatingLabel
         controlId="queryText"
         label="Search recipe"
