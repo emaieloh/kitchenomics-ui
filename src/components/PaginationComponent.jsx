@@ -25,13 +25,15 @@ const PaginationComponent = (props) => {
   };
 
   const previousPageButton = async () => {
-    const { data } = await axios(pages[currentPage - 1]);
-    setRecipes([...data.hits]);
-    setCurrentPage(currentPage - 1);
-    const pagesCopy = [...pages];
-    pagesCopy.pop();
-    setPages([...pagesCopy]);
-    window.scrollTo(0, 0);
+    if (currentPage) {
+      const { data } = await axios(pages[currentPage - 1]);
+      setRecipes([...data.hits]);
+      setCurrentPage(currentPage - 1);
+      const pagesCopy = [...pages];
+      pagesCopy.pop();
+      setPages([...pagesCopy]);
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
