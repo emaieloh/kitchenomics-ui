@@ -1,8 +1,43 @@
 import React from "react";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const SearchRecipe = ({ searchHandler, queryText, setQueryText }) => {
+const SearchRecipe = (props) => {
+  const {
+    queryText,
+    setQueryText,
+    setRecipes,
+    setPages,
+    setCurrentPage,
+    showSpinner,
+    hideSpinner,
+  } = props;
+  const navigate = useNavigate();
+
+  const searchHandler = async (e) => {
+    e.preventDefault();
+
+    showSpinner();
+    setPages([]);
+    setCurrentPage(0);
+    const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=2f5498b7&app_key=ccb0994fa759c8bb890e6ac4e7124c19`;
+    const { data } = await axios(url);
+    if (!data.hits.length) {
+      navigate("/no-result", { replace: true });
+    } else {
+      setRecipes([...data.hits]);
+      if (data._links.next) {
+        setPages([url, data._links.next.href]);
+      } else {
+        setPages([url, "No more results"]);
+      }
+      navigate("/", { replace: true });
+    }
+    hideSpinner();
+  };
+
   return (
     <Form className="w-50 mx-auto mb-1" onSubmit={searchHandler}>
       <FloatingLabel
