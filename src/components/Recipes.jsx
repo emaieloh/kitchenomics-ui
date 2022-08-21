@@ -7,6 +7,7 @@ import RecipeIngredients from "./RecipeIngredients";
 import SearchRecipe from "./SearchRecipe";
 import NoResult from "./NoResult";
 import LoadingSpinner from "./LoadingSpinner";
+import CarouselComponent from "./CarouselComponent";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -32,8 +33,9 @@ const Recipes = () => {
       />
       <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />
       <Routes>
+        <Route path="/" element={<CarouselComponent />} />
         <Route
-          path="/"
+          path={`/${queryText}`}
           element={
             <RecipeList
               recipes={recipes}
@@ -45,7 +47,10 @@ const Recipes = () => {
             />
           }
         />
-        <Route path={`/${recipeId}`} element={<RecipeIngredients />} />
+        <Route
+          path={`/${recipeId}`}
+          element={<RecipeIngredients queryText={queryText} />}
+        />
         <Route path="/no-result" element={<NoResult />} />
       </Routes>
     </Container>

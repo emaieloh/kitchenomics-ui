@@ -33,7 +33,7 @@ const SearchRecipe = (props) => {
       } else {
         setPages([url, "No more results"]);
       }
-      navigate("/", { replace: true });
+      navigate(`/${queryText}`, { replace: true });
     }
     hideSpinner();
   };

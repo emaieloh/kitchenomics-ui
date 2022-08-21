@@ -30,3 +30,11 @@ div#registration-header button {
   background-color: #ddd;
   border-radius: 50%;
 }
+
+.carousel-component {
+  max-width: 400px;
+}
+
+.carousel-caption {
+  text-shadow: 2px 2px 2px #555;
+}
