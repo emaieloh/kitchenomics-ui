@@ -13,7 +13,7 @@ const RecipeIngredients = () => {
   const { recipeIngHref } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
-  const [recipeImage, setRecipeImage] = useState({});
+  const [recipeImage, setRecipeImage] = useState("");
   const [nutrients, setNutrients] = useState({});
   const [nutrientsList, setNutrientsList] = useState([]);
   const [numberOfServings, setNumberOfServings] = useState(0);
