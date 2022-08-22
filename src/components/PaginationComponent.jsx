@@ -64,7 +64,7 @@ const PaginationComponent = (props) => {
   return (
     <>
       {recipes.length ? (
-        <Pagination className="justify-content-center">
+        <Pagination className="justify-content-center my-1">
           {!currentPage ? (
             <Pagination.Prev disabled />
           ) : (

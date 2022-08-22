@@ -23,9 +23,9 @@ const SearchRecipe = (props) => {
     showSpinner();
 
     removeStorageItems(["pages"]);
-    setStorageItems([["currentPage", 0]]);
-
     setPages([]);
+
+    setStorageItems([["currentPage", 0]]);
     setCurrentPage(0);
 
     const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=2f5498b7&app_key=ccb0994fa759c8bb890e6ac4e7124c19`;

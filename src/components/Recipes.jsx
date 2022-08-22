@@ -39,7 +39,7 @@ const Recipes = () => {
   const hideSpinner = () => setSpinner(false);
 
   return (
-    <Container>
+    <Container className="pb-1">
       <SearchRecipe
         setSearchKeyword={setSearchKeyword}
         setRecipes={setRecipes}
