@@ -8,7 +8,9 @@ import NutrientsList from "./NutrientsList";
 import Energy from "./Energy";
 
 const Recipe = ({ recipe }) => {
-  const { setRecipeId, setRecipeIngHref } = useContext(MyContext);
+  const { setRecipeId, setRecipeIngHref, setStorageItems } = useContext(
+    MyContext
+  );
   const [nutrientsList1, setNutrientsList1] = useState([]);
   const [nutrientsList2, setNutrientsList2] = useState([]);
   const navigate = useNavigate();
@@ -21,8 +23,15 @@ const Recipe = ({ recipe }) => {
   const checkIngredients = () => {
     const self = recipe._links.self.href.split("/");
     const id = self[6].split("?");
+
     setRecipeId(id[0]);
     setRecipeIngHref(recipe._links.self.href);
+
+    setStorageItems([
+      ["recipeId", JSON.stringify(id[0])],
+      ["recipeIngHref", JSON.stringify(recipe._links.self.href)],
+    ]);
+
     navigate(`/${id[0]}`, { replace: true });
   };
 
