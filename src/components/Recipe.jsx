@@ -24,13 +24,13 @@ const Recipe = ({ recipe }) => {
     const self = recipe._links.self.href.split("/");
     const id = self[6].split("?");
 
-    setRecipeId(id[0]);
-    setRecipeIngHref(recipe._links.self.href);
-
     setStorageItems([
       ["recipeId", JSON.stringify(id[0])],
       ["recipeIngHref", JSON.stringify(recipe._links.self.href)],
     ]);
+
+    setRecipeId(id[0]);
+    setRecipeIngHref(recipe._links.self.href);
 
     navigate(`/${id[0]}`, { replace: true });
   };

@@ -22,11 +22,11 @@ const SearchRecipe = (props) => {
     e.preventDefault();
     showSpinner();
 
-    setPages([]);
-    setCurrentPage(0);
-
     removeStorageItems(["pages"]);
     setStorageItems([["currentPage", 0]]);
+
+    setPages([]);
+    setCurrentPage(0);
 
     const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=2f5498b7&app_key=ccb0994fa759c8bb890e6ac4e7124c19`;
     const { data } = await axios(url);
@@ -34,22 +34,22 @@ const SearchRecipe = (props) => {
     if (!data.hits.length) {
       navigate("/no-result", { replace: true });
     } else {
-      setRecipes([...data.hits]);
-      setSearchKeyword(queryText);
-
       setStorageItems([
         ["recipes", JSON.stringify([...data.hits])],
         ["searchKeyword", JSON.stringify(queryText)],
       ]);
 
+      setRecipes([...data.hits]);
+      setSearchKeyword(queryText);
+
       if (data._links.next) {
-        setPages([url, data._links.next.href]);
         setStorageItems([
           ["pages", JSON.stringify([url, data._links.next.href])],
         ]);
+        setPages([url, data._links.next.href]);
       } else {
-        setPages([url, "No more results"]);
         setStorageItems([["pages", JSON.stringify([url, "No more results"])]]);
+        setPages([url, "No more results"]);
       }
 
       navigate(`/${queryText}`, { replace: true });

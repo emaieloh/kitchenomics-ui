@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registrationModal, setRegistrationModal] = useState(false);
-  const { setIsLoggedIn, setUser } = useContext(MyContext);
+  const { setIsLoggedIn, setUser, setStorageItems } = useContext(MyContext);
 
   const navigate = useNavigate();
   const showModal = () => setRegistrationModal(true);
@@ -28,7 +28,7 @@ const LoginPage = () => {
     if (user.error) {
       alert(user.error);
     } else {
-      localStorage.setItem("user", JSON.stringify(user));
+      setStorageItems([["user", JSON.stringify(user)]]);
       setIsLoggedIn(true);
       setUser(user);
       navigate("/", { replace: true });
@@ -79,6 +79,7 @@ const LoginPage = () => {
           hideModal={hideModal}
           setIsLoggedIn={setIsLoggedIn}
           setUser={setUser}
+          setStorageItems={setStorageItems}
         />
       </Form>
     </Container>

@@ -12,7 +12,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Registration = (props) => {
-  const { registrationModal, hideModal, setIsLoggedIn, setUser } = props;
+  const {
+    registrationModal,
+    hideModal,
+    setIsLoggedIn,
+    setUser,
+    setStorageItems,
+  } = props;
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -44,7 +50,7 @@ const Registration = (props) => {
         setUserError(user.error);
         setRegistrationAlert(true);
       } else {
-        localStorage.setItem("user", JSON.stringify(user));
+        setStorageItems([["user", JSON.stringify(user)]]);
         setIsLoggedIn(true);
         setUser(user);
         navigate("/", { replace: true });
