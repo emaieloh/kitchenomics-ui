@@ -9,7 +9,7 @@ import NutrientsList from "./NutrientsList";
 import Ingredients from "./Ingredients";
 import LoadingSpinner from "./LoadingSpinner";
 
-const RecipeIngredients = ({ queryText }) => {
+const RecipeIngredients = ({ searchKeyword }) => {
   const { recipeIngHref } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
@@ -22,7 +22,7 @@ const RecipeIngredients = ({ queryText }) => {
   const hideSpinner = () => setSpinner(false);
   const navigate = useNavigate();
   const backButton = () => {
-    navigate(`/${queryText}`, { replace: true });
+    navigate(`/${searchKeyword}`, { replace: true });
   };
 
   useEffect(() => {

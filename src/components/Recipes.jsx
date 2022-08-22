@@ -10,32 +10,50 @@ import LoadingSpinner from "./LoadingSpinner";
 import CarouselComponent from "./CarouselComponent";
 
 const Recipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [queryText, setQueryText] = useState("");
-  const [pages, setPages] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [recipes, setRecipes] = useState(
+    localStorage.getItem("recipes")
+      ? JSON.parse(localStorage.getItem("recipes"))
+      : []
+  );
+  const [pages, setPages] = useState(
+    localStorage.getItem("pages")
+      ? JSON.parse(localStorage.getItem("pages"))
+      : []
+  );
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem("currentPage")
+      ? JSON.parse(localStorage.getItem("currentPage"))
+      : 0
+  );
   const [spinner, setSpinner] = useState(false);
 
-  const { recipeId } = useContext(MyContext);
+  const {
+    searchKeyword,
+    setSearchKeyword,
+    recipeId,
+    setStorageItems,
+    removeStorageItems,
+  } = useContext(MyContext);
+
   const showSpinner = () => setSpinner(true);
   const hideSpinner = () => setSpinner(false);
 
   return (
     <Container>
       <SearchRecipe
-        queryText={queryText}
-        setQueryText={setQueryText}
+        setSearchKeyword={setSearchKeyword}
         setRecipes={setRecipes}
         setPages={setPages}
         setCurrentPage={setCurrentPage}
         showSpinner={showSpinner}
         hideSpinner={hideSpinner}
+        setStorageItems={setStorageItems}
+        removeStorageItems={removeStorageItems}
       />
-      <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />
       <Routes>
         <Route path="/" element={<CarouselComponent />} />
         <Route
-          path={`/${queryText}`}
+          path={`/${searchKeyword}`}
           element={
             <RecipeList
               recipes={recipes}
@@ -49,10 +67,11 @@ const Recipes = () => {
         />
         <Route
           path={`/${recipeId}`}
-          element={<RecipeIngredients queryText={queryText} />}
+          element={<RecipeIngredients searchKeyword={searchKeyword} />}
         />
         <Route path="/no-result" element={<NoResult />} />
       </Routes>
+      <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />
     </Container>
   );
 };

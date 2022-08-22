@@ -10,20 +10,28 @@ const CarouselComponent = () => {
   return (
     <Carousel className="carousel-component mx-auto mt-5 pt-5" fade>
       <Carousel.Item interval={2000}>
-        <img className="d-block w-100" src={beef} alt="Roast sirloin of beef" />
+        <img
+          className="d-block w-100 rounded-2"
+          src={beef}
+          alt="Roast sirloin of beef"
+        />
         <Carousel.Caption>
           <div>Roast sirloin of beef</div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
-        <img className="d-block w-100" src={chicken} alt="Catalan chicken" />
+        <img
+          className="d-block w-100 rounded-2"
+          src={chicken}
+          alt="Catalan chicken"
+        />
         <Carousel.Caption>
           <div>Catalan chicken</div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
         <img
-          className="d-block w-100"
+          className="d-block w-100 rounded-2"
           src={fish}
           alt="Fish with peas and lettuce"
         />
@@ -32,13 +40,17 @@ const CarouselComponent = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
-        <img className="d-block w-100" src={pork} alt="Pork chops" />
+        <img className="d-block w-100 rounded-2" src={pork} alt="Pork chops" />
         <Carousel.Caption>
           <div>Pork chops</div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={2000}>
-        <img className="d-block w-100" src={shrimp} alt="Piri piri shrimp" />
+        <img
+          className="d-block w-100 rounded-2"
+          src={shrimp}
+          alt="Piri piri shrimp"
+        />
         <Carousel.Caption>
           <div>Piri piri shrimp</div>
         </Carousel.Caption>
