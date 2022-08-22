@@ -9,7 +9,7 @@ import shrimp from "../images/shrimp.jpg";
 const CarouselComponent = () => {
   return (
     <Carousel className="carousel-component mx-auto mt-5 pt-5" fade>
-      <Carousel.Item interval={2000}>
+      <Carousel.Item interval={3000}>
         <img
           className="d-block w-100 rounded-2"
           src={beef}
@@ -19,7 +19,7 @@ const CarouselComponent = () => {
           <div>Roast sirloin of beef</div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={2000}>
+      <Carousel.Item interval={3000}>
         <img
           className="d-block w-100 rounded-2"
           src={chicken}
@@ -29,7 +29,7 @@ const CarouselComponent = () => {
           <div>Catalan chicken</div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={2000}>
+      <Carousel.Item interval={3000}>
         <img
           className="d-block w-100 rounded-2"
           src={fish}
@@ -39,13 +39,13 @@ const CarouselComponent = () => {
           <div>Fish with peas and lettuce</div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={2000}>
+      <Carousel.Item interval={3000}>
         <img className="d-block w-100 rounded-2" src={pork} alt="Pork chops" />
         <Carousel.Caption>
           <div>Pork chops</div>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={2000}>
+      <Carousel.Item interval={3000}>
         <img
           className="d-block w-100 rounded-2"
           src={shrimp}
