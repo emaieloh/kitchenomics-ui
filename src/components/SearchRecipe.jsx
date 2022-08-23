@@ -34,13 +34,15 @@ const SearchRecipe = (props) => {
     if (!data.hits.length) {
       navigate("/no-result", { replace: true });
     } else {
+      const keyword = queryText.split(" ").join("%20");
+
       setStorageItems([
         ["recipes", JSON.stringify([...data.hits])],
-        ["searchKeyword", JSON.stringify(queryText)],
+        ["searchKeyword", JSON.stringify(keyword)],
       ]);
 
       setRecipes([...data.hits]);
-      setSearchKeyword(queryText);
+      setSearchKeyword(keyword);
 
       if (data._links.next) {
         setStorageItems([
