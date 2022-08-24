@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import MyContext from "../MyContext";
+import MyContext from "../../MyContext";
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import "./NavigationBar.css";
 
 const NavigationBar = () => {
   const { user, setIsLoggedIn, removeStorageItems } = useContext(MyContext);
@@ -34,7 +35,7 @@ const NavigationBar = () => {
 
   return (
     <Navbar
-      className="px-5"
+      className="px-5 navigation-bar"
       bg="success"
       variant="dark"
       expand="md"

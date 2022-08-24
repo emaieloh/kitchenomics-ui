@@ -1,10 +1,11 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import beef from "../images/beef.jpg";
-import chicken from "../images/chicken.jpg";
-import fish from "../images/fish.jpg";
-import pork from "../images/pork.jpg";
-import shrimp from "../images/shrimp.jpg";
+import beef from "../../images/beef.jpg";
+import chicken from "../../images/chicken.jpg";
+import fish from "../../images/fish.jpg";
+import pork from "../../images/pork.jpg";
+import shrimp from "../../images/shrimp.jpg";
+import "./CarouselComponent.css";
 
 const CarouselComponent = () => {
   return (

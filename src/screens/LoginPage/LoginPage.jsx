@@ -41,11 +41,11 @@ const LoginPage = () => {
       id="login-container"
       className="d-flex flex-column justify-content-center align-items-center w-100"
     >
-      <h1 className="fw-bold">Food Recipe App</h1>
+      <h1 className="fw-bold">Kitchenomics</h1>
       <div className="intro mb-4 text-center position-relative">
         <div>Search over 2.3 million recipes around the world.</div>
         <div>
-          Included are the recipe ingredients and nutrition facts, with health
+          Including the recipe ingredients and nutrition facts, with health
           labels.
         </div>
         <div className="opacity-25 bg-secondary w-100 h-100 position-absolute top-0 start-0 rounded-2 background"></div>

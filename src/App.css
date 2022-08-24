@@ -2,13 +2,9 @@
 
 body {
   font-family: "Kalam", cursive;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
-.carousel-component {
-  max-width: 600px;
-}
-
-.carousel-caption {
-  text-shadow: 2px 2px 2px #555;
-}
+/* form#search-box {
+  z-index: 1;
+} */

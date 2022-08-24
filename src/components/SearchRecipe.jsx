@@ -61,7 +61,11 @@ const SearchRecipe = (props) => {
   };
 
   return (
-    <Form className="w-50 mx-auto mb-1" onSubmit={searchHandler}>
+    <Form
+      className="w-50 mx-auto mb-1"
+      id="search-box"
+      onSubmit={searchHandler}
+    >
       <FloatingLabel
         controlId="queryText"
         label="Search recipe"

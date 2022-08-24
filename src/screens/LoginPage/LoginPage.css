@@ -17,6 +17,7 @@ div#login-container div.intro div {
   color: #ffffff;
   text-shadow: 1px 1px 1px #212529;
   padding: 0 10px;
+  font-size: 24px;
 }
 
 div#login-container div.intro div.background {
