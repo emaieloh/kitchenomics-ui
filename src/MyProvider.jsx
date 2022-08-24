@@ -24,6 +24,21 @@ const MyProvider = (props) => {
       : ""
   );
 
+  const checkIngredients = (recipeLink, navigate) => {
+    const self = recipeLink.split("/");
+    const id = self[6].split("?");
+
+    setStorageItems([
+      ["recipeId", JSON.stringify(id[0])],
+      ["recipeIngHref", JSON.stringify(recipeLink)],
+    ]);
+
+    setRecipeId(id[0]);
+    setRecipeIngHref(recipeLink);
+
+    navigate(`/${id[0]}`, { replace: true });
+  };
+
   const setStorageItems = (items) => {
     items.forEach((item) => localStorage.setItem(item[0], item[1]));
   };
@@ -43,6 +58,7 @@ const MyProvider = (props) => {
     setSearchKeyword,
     setRecipeId,
     setRecipeIngHref,
+    checkIngredients,
     setStorageItems,
     removeStorageItems,
   };

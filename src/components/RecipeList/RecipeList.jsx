@@ -18,7 +18,9 @@ const RecipeList = (props) => {
 
   return (
     <>
-      {recipeList}
+      <div className="recipe-list mt-5 pt-5 px-1 d-flex justify-content-center flex-wrap">
+        {recipeList}
+      </div>
       <PaginationComponent
         recipes={recipes}
         pages={pages}

@@ -12,10 +12,13 @@ const NavigationBar = (props) => {
     showSpinner,
     hideSpinner,
   } = props;
+
   const {
     user,
     setIsLoggedIn,
     setSearchKeyword,
+    setRecipeId,
+    setRecipeIngHref,
     setStorageItems,
     removeStorageItems,
   } = useContext(MyContext);
@@ -44,6 +47,13 @@ const NavigationBar = (props) => {
       "pages",
       "currentPage",
     ]);
+
+    setRecipes([]);
+    setSearchKeyword("");
+    setRecipeId("");
+    setRecipeIngHref("");
+    setPages([]);
+    setCurrentPage(0);
     navigate("/", { replace: true });
   };
 

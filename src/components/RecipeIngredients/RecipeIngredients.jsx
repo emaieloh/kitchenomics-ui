@@ -10,7 +10,7 @@ import Ingredients from "./Ingredients";
 import LoadingSpinner from "../LoadingSpinner";
 
 const RecipeIngredients = ({ searchKeyword }) => {
-  const { recipeIngHref } = useContext(MyContext);
+  const { recipeIngHref, removeStorageItems } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [recipeImage, setRecipeImage] = useState("");
@@ -21,8 +21,15 @@ const RecipeIngredients = ({ searchKeyword }) => {
 
   const hideSpinner = () => setSpinner(false);
   const navigate = useNavigate();
+
   const backButton = () => {
-    navigate(`/${searchKeyword}`, { replace: true });
+    removeStorageItems(["recipeId", "recipeIngHref"]);
+
+    if (!searchKeyword) {
+      navigate("/", { replace: true });
+    } else {
+      navigate(`/${searchKeyword}`, { replace: true });
+    }
   };
 
   useEffect(() => {
@@ -41,7 +48,7 @@ const RecipeIngredients = ({ searchKeyword }) => {
   }, []);
 
   return (
-    <Container className="my-2 recipe-font">
+    <Container className="my-5 pt-5 recipe-font">
       <Card className="p-4 col-lg-6 mx-auto">
         <Row>
           <Col>
