@@ -1,16 +1,19 @@
 import React, { useState, useContext } from "react";
 import MyContext from "../../MyContext";
-import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
+import { Container, Form, FloatingLabel, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Registration from "../../components/Registration/Registration";
 import "./LoginPage.css";
 
 const LoginPage = () => {
+  const { setIsLoggedIn, setUser, setStorageItems } = useContext(MyContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registrationModal, setRegistrationModal] = useState(false);
-  const { setIsLoggedIn, setUser, setStorageItems } = useContext(MyContext);
+  const [loginAlert, setLoginAlert] = useState(false);
+  const [userError, setUserError] = useState("");
 
   const navigate = useNavigate();
   const showModal = () => setRegistrationModal(true);
@@ -27,7 +30,8 @@ const LoginPage = () => {
       }
     );
     if (user.error) {
-      alert(user.error);
+      setUserError(user.error);
+      setLoginAlert(true);
     } else {
       setStorageItems([["user", JSON.stringify(user)]]);
       setIsLoggedIn(true);
@@ -50,6 +54,14 @@ const LoginPage = () => {
         </div>
         <div className="opacity-25 bg-secondary w-100 h-100 position-absolute top-0 start-0 rounded-2 background"></div>
       </div>
+      <Alert
+        show={loginAlert}
+        variant="danger"
+        onClose={() => setLoginAlert(false)}
+        dismissible
+      >
+        {userError}
+      </Alert>
       <Form onSubmit={submitLogin} id="login" className="p-3">
         <FloatingLabel controlId="Email" label="Email">
           <Form.Control
