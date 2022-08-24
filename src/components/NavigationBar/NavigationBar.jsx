@@ -35,7 +35,14 @@ const NavigationBar = (props) => {
       "pages",
       "currentPage",
     ]);
+
     setIsLoggedIn(false);
+    setRecipes([]);
+    setSearchKeyword("");
+    setRecipeId("");
+    setRecipeIngHref("");
+    setPages([]);
+    setCurrentPage(0);
   };
 
   const homeButton = () => {

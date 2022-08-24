@@ -10,7 +10,12 @@ import Ingredients from "./Ingredients";
 import LoadingSpinner from "../LoadingSpinner";
 
 const RecipeIngredients = ({ searchKeyword }) => {
-  const { recipeIngHref, removeStorageItems } = useContext(MyContext);
+  const {
+    recipeIngHref,
+    setRecipeId,
+    setRecipeIngHref,
+    removeStorageItems,
+  } = useContext(MyContext);
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [recipeImage, setRecipeImage] = useState("");
@@ -24,6 +29,8 @@ const RecipeIngredients = ({ searchKeyword }) => {
 
   const backButton = () => {
     removeStorageItems(["recipeId", "recipeIngHref"]);
+    setRecipeId("");
+    setRecipeIngHref("");
 
     if (!searchKeyword) {
       navigate("/", { replace: true });
