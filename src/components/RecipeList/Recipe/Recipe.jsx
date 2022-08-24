@@ -11,6 +11,7 @@ const Recipe = ({ recipe }) => {
   const { checkIngredients } = useContext(MyContext);
   const [nutrientsList1, setNutrientsList1] = useState([]);
   const [nutrientsList2, setNutrientsList2] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -21,6 +21,7 @@ const SearchRecipe = (props) => {
 
   const showModal = () => setSearchModal(true);
   const hideModal = () => setSearchModal(false);
+
   const navigate = useNavigate();
 
   const searchHandler = async (e) => {

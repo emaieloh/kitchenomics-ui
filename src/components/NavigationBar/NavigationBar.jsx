@@ -61,6 +61,7 @@ const NavigationBar = (props) => {
     setRecipeIngHref("");
     setPages([]);
     setCurrentPage(0);
+
     navigate("/", { replace: true });
   };
 

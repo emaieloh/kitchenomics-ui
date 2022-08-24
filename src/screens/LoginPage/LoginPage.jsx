@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [userError, setUserError] = useState("");
 
   const navigate = useNavigate();
+
   const showModal = () => setRegistrationModal(true);
   const hideModal = () => setRegistrationModal(false);
 
@@ -29,6 +30,7 @@ const LoginPage = () => {
         password,
       }
     );
+
     if (user.error) {
       setUserError(user.error);
       setLoginAlert(true);

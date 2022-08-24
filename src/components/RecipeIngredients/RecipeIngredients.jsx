@@ -16,6 +16,7 @@ const RecipeIngredients = ({ searchKeyword }) => {
     setRecipeIngHref,
     removeStorageItems,
   } = useContext(MyContext);
+
   const [recipeName, setRecipeName] = useState("");
   const [recipeIngredients, setRecipeIngredients] = useState([]);
   const [recipeImage, setRecipeImage] = useState("");
@@ -25,6 +26,7 @@ const RecipeIngredients = ({ searchKeyword }) => {
   const [spinner, setSpinner] = useState(true);
 
   const hideSpinner = () => setSpinner(false);
+
   const navigate = useNavigate();
 
   const backButton = () => {

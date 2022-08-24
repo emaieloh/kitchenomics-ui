@@ -47,6 +47,7 @@ const Registration = (props) => {
           password,
         }
       );
+
       if (user.error) {
         setUserError(user.error);
         setRegistrationAlert(true);

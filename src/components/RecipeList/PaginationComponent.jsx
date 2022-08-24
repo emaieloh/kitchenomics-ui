@@ -12,6 +12,7 @@ const PaginationComponent = (props) => {
     setPages,
     setCurrentPage,
   } = props;
+
   const { setStorageItems } = useContext(MyContext);
 
   const nextPageButton = async () => {
