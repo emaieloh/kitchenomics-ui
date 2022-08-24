@@ -36,7 +36,7 @@ const Recipe = ({ recipe }) => {
   };
 
   return (
-    <Card className="col-sm-12 col-md-6 col-lg-4 d-inline-block align-top">
+    <Card className="col-sm-12 col-md-6 col-lg-4 d-inline-block align-top recipe-font">
       <Row className="p-3">
         <Col className="col-4">
           <Card.Img
@@ -47,7 +47,7 @@ const Recipe = ({ recipe }) => {
         <Col>
           <Card.Subtitle
             onClick={checkIngredients}
-            className="ingredients-link"
+            className="ingredients-link recipe-name"
           >
             {recipe.recipe.label}
           </Card.Subtitle>

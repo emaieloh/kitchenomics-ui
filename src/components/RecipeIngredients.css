@@ -1,3 +1,11 @@
+div.recipe-font {
+  font-family: "Arima Madurai", cursive;
+}
+
+div.recipe-name {
+  font-weight: 900;
+}
+
 .ingredient-list {
   list-style: square outside;
 }

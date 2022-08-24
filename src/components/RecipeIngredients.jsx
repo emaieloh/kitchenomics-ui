@@ -41,25 +41,25 @@ const RecipeIngredients = ({ searchKeyword }) => {
   }, []);
 
   return (
-    <Container className="my-2">
+    <Container className="my-2 recipe-font">
       <Card className="p-4 col-lg-6 mx-auto">
         <Row>
           <Col>
             <Card.Img src={recipeImage} alt={recipeName} />
-            <Card.Title className="py-2 mt-2 border-bottom fs-4">
+            <Card.Title className="py-2 mt-2 border-bottom fs-4 recipe-name">
               {recipeName}
             </Card.Title>
-            <Card.Subtitle className="py-2 mb-2 border-bottom fs-4 fst-italic">
+            <Card.Subtitle className="py-2 mb-2 border-bottom fs-4 fw-bold">
               {numberOfServings} Servings
             </Card.Subtitle>
-            <Card.Subtitle className="py-2 mb-2 border-bottom fs-4 fst-italic">
+            <Card.Subtitle className="py-2 mb-2 border-bottom fs-4 fw-bold">
               {recipeIngredients.length} Ingredients
             </Card.Subtitle>
             <Ingredients ingredients={recipeIngredients} />
           </Col>
           <Col>
             <Card.Subtitle className="py-2 mb-2 border-bottom d-flex justify-content-between">
-              <span className="fs-4 fst-italic lh-base">Nutrition</span>
+              <span className="fs-4 fw-bold lh-base">Nutrition</span>
               <Button variant="secondary" size="sm" onClick={backButton}>
                 <FaArrowLeft /> Back
               </Button>

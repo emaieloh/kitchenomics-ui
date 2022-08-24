@@ -1,0 +1,13 @@
+form#registration {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+form#registration {
+  box-shadow: 0 0 2px 2px #ddd;
+}
+
+div#registration-header button {
+  background-color: #ddd;
+  border-radius: 50%;
+}

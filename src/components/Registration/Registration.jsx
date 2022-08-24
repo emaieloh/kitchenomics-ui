@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Registration.css";
 
 const Registration = (props) => {
   const {
