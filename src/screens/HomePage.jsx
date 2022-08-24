@@ -4,20 +4,12 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 import RecipeList from "../components/RecipeList/RecipeList";
 import RecipeIngredients from "../components/RecipeIngredients/RecipeIngredients";
-import SearchRecipe from "../components/SearchRecipe";
 import NoResult from "../components/NoResult";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CarouselComponent from "../components/CarouselComponent/CarouselComponent";
 
 const HomePage = () => {
-  const {
-    isLoggedIn,
-    searchKeyword,
-    setSearchKeyword,
-    recipeId,
-    setStorageItems,
-    removeStorageItems,
-  } = useContext(MyContext);
+  const { isLoggedIn, searchKeyword, recipeId } = useContext(MyContext);
 
   const [recipes, setRecipes] = useState(
     localStorage.getItem("recipes")
@@ -45,16 +37,12 @@ const HomePage = () => {
 
   return (
     <>
-      <NavigationBar />
-      <SearchRecipe
-        setSearchKeyword={setSearchKeyword}
+      <NavigationBar
         setRecipes={setRecipes}
         setPages={setPages}
         setCurrentPage={setCurrentPage}
         showSpinner={showSpinner}
         hideSpinner={hideSpinner}
-        setStorageItems={setStorageItems}
-        removeStorageItems={removeStorageItems}
       />
       <Routes>
         <Route path="/" element={<CarouselComponent />} />

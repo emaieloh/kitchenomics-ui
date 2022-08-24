@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FloatingLabel, Button } from "react-bootstrap";
+import { Form, FloatingLabel, Button, Modal } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -15,7 +15,12 @@ const SearchRecipe = (props) => {
     setStorageItems,
     removeStorageItems,
   } = props;
+
   const [queryText, setQueryText] = useState("");
+  const [searchModal, setSearchModal] = useState(false);
+
+  const showModal = () => setSearchModal(true);
+  const hideModal = () => setSearchModal(false);
   const navigate = useNavigate();
 
   const searchHandler = async (e) => {
@@ -58,35 +63,39 @@ const SearchRecipe = (props) => {
 
     setQueryText("");
     hideSpinner();
+    hideModal();
   };
 
   return (
-    <Form
-      className="w-50 mx-auto mb-1"
-      id="search-box"
-      onSubmit={searchHandler}
-    >
-      <FloatingLabel
-        controlId="queryText"
-        label="Search recipe"
-        className="d-flex flex-row"
-      >
-        <Form.Control
-          type="text"
-          placeholder="Search recipe"
-          value={queryText}
-          onChange={(e) => setQueryText(e.target.value)}
-          className="rounded-0 rounded-start"
-        />
-        <Button
-          type="submit"
-          variant="success"
-          className="rounded-0 rounded-end"
-        >
-          <FaSearch className="fs-4" />
-        </Button>
-      </FloatingLabel>
-    </Form>
+    <>
+      <Button type="button" variant="success" onClick={showModal}>
+        Search <FaSearch className="fs-4" />
+      </Button>
+      <Modal show={searchModal} onHide={hideModal}>
+        <Form onSubmit={searchHandler}>
+          <FloatingLabel
+            controlId="queryText"
+            label="Search recipe"
+            className="d-flex flex-row"
+          >
+            <Form.Control
+              type="text"
+              placeholder="Search recipe"
+              value={queryText}
+              onChange={(e) => setQueryText(e.target.value)}
+              className="rounded-0 rounded-start"
+            />
+            <Button
+              type="submit"
+              variant="success"
+              className="rounded-0 rounded-end"
+            >
+              Search
+            </Button>
+          </FloatingLabel>
+        </Form>
+      </Modal>
+    </>
   );
 };
 
