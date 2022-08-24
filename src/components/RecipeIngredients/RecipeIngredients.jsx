@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import MyContext from "../MyContext";
+import MyContext from "../../MyContext";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
 import "./RecipeIngredients.css";
-import NutrientsList from "./NutrientsList";
+import NutrientsList from "../NutrientsList/NutrientsList";
 import Ingredients from "./Ingredients";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner";
 
 const RecipeIngredients = ({ searchKeyword }) => {
   const { recipeIngHref } = useContext(MyContext);

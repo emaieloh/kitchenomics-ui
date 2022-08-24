@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import MyContext from "../MyContext";
+import MyContext from "../../MyContext";
 import { Pagination } from "react-bootstrap";
 import axios from "axios";
 

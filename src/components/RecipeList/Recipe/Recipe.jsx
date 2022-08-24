@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import MyContext from "../MyContext";
+import MyContext from "../../../MyContext";
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Col, Container } from "react-bootstrap";
 import "./Recipe.css";
 import HealthLabels from "./HealthLabels";
-import NutrientsList from "./NutrientsList";
+import NutrientsList from "../../NutrientsList/NutrientsList";
 import Energy from "./Energy";
 
 const Recipe = ({ recipe }) => {
