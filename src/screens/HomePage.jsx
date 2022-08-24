@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import MyContext from "../MyContext";
+import MyContext from "../MyContext/MyContext";
 import { Navigate, Routes, Route } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 import RecipeList from "../components/RecipeList/RecipeList";

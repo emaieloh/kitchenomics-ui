@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyContext from "./MyContext";
+import MyContext from "./MyContext/MyContext";
 
 const MyProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(

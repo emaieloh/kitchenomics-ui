@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import MyContext from "../../MyContext";
+import MyContext from "../../MyContext/MyContext";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
