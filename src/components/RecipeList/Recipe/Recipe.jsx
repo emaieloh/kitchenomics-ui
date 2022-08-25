@@ -6,13 +6,41 @@ import "./Recipe.css";
 import HealthLabels from "./HealthLabels";
 import NutrientsList from "../../NutrientsList/NutrientsList";
 import Energy from "./Energy";
+import axios from "axios";
 
-const Recipe = ({ recipe }) => {
-  const { checkIngredients } = useContext(MyContext);
+const Recipe = (props) => {
+  const {
+    label,
+    image,
+    href,
+    healthLabels,
+    energy,
+    servings,
+    totalNutrients,
+  } = props;
+
+  const { checkIngredients, favorites, setFavorites } = useContext(MyContext);
+
   const [nutrientsList1, setNutrientsList1] = useState([]);
   const [nutrientsList2, setNutrientsList2] = useState([]);
 
   const navigate = useNavigate();
+
+  const addFavorite = async () => {
+    const { data: favorite } = await axios.post(
+      "http://localhost:8080/favorites/add",
+      {
+        label,
+        image,
+        href,
+        healthLabels,
+        energy,
+        servings,
+        totalNutrients,
+      }
+    );
+    setFavorites([...favorites, favorite]);
+  };
 
   useEffect(() => {
     setNutrientsList1(["PROCNT", "FAT", "CHOCDF"]);
@@ -21,21 +49,23 @@ const Recipe = ({ recipe }) => {
 
   return (
     <Card className="col-sm-12 col-md-6 col-lg-4 d-inline-block align-top recipe-font">
+      <Row className="py-1 px-3">
+        <div onClick={addFavorite} className="text-end me-2 favorite">
+          Add to Favorites
+        </div>
+      </Row>
       <Row className="p-3">
         <Col className="col-4">
-          <Card.Img
-            src={recipe.recipe.images.SMALL.url}
-            alt={recipe.recipe.label}
-          />
+          <Card.Img src={image} alt={label} />
         </Col>
         <Col>
           <Card.Subtitle
-            onClick={() => checkIngredients(recipe._links.self.href, navigate)}
+            onClick={() => checkIngredients(href, navigate)}
             className="ingredients-link recipe-name"
           >
-            {recipe.recipe.label}
+            {label}
           </Card.Subtitle>
-          <HealthLabels healthLabels={recipe.recipe.healthLabels} />
+          <HealthLabels healthLabels={healthLabels} />
         </Col>
       </Row>
       <Container id="shaded">
@@ -44,21 +74,18 @@ const Recipe = ({ recipe }) => {
             id="recipe-per-serving"
             className="col-md-6 col-lg-4 text-center"
           >
-            <Energy
-              energy={recipe.recipe.totalNutrients.ENERC_KCAL}
-              servings={recipe.recipe.yield}
-            />
+            <Energy energy={energy} servings={servings} />
           </Col>
           <Col className="col-md-6 col-lg-4">
             <NutrientsList
-              totalNutrients={recipe.recipe.totalNutrients}
+              totalNutrients={totalNutrients}
               nutrientsList={nutrientsList1}
               css={"nutrient-per-serving pfc ps-0"}
             />
           </Col>
           <Col className="col-md-6 col-lg-4">
             <NutrientsList
-              totalNutrients={recipe.recipe.totalNutrients}
+              totalNutrients={totalNutrients}
               nutrientsList={nutrientsList2}
               css={"nutrient-per-serving ps-0"}
             />

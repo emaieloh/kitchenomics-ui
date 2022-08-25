@@ -13,7 +13,18 @@ const RecipeList = (props) => {
   } = props;
 
   const recipeList = recipes.map((recipe) => {
-    return <Recipe key={recipe._links.self.href} recipe={recipe} />;
+    return (
+      <Recipe
+        key={recipe._links.self.href}
+        label={recipe.recipe.label}
+        image={recipe.recipe.images.SMALL.url}
+        href={recipe._links.self.href}
+        healthLabels={recipe.recipe.healthLabels}
+        energy={recipe.recipe.totalNutrients.ENERC_KCAL}
+        servings={recipe.recipe.yield}
+        totalNutrients={recipe.recipe.totalNutrients}
+      />
+    );
   });
 
   return (

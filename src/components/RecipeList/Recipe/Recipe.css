@@ -4,6 +4,15 @@ ul.nutrient-per-serving li span {
   font-size: small;
 }
 
+.ingredients-link:hover,
+div.favorite:hover {
+  text-shadow: 1px 1px 2px #999;
+}
+
+div.favorite {
+  cursor: pointer;
+}
+
 div.recipe-font {
   font-family: "Arima Madurai", cursive;
 }
@@ -43,8 +52,4 @@ ul.nutrient-per-serving li span:last-child {
 
 .ingredients-link {
   cursor: pointer;
-}
-
-.ingredients-link:hover {
-  text-shadow: 1px 1px 2px #999;
 }

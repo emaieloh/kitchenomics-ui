@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyContext from "./MyContext/MyContext";
+import axios from "axios";
 
 const MyProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -23,6 +24,7 @@ const MyProvider = (props) => {
       ? JSON.parse(localStorage.getItem("recipeIngHref"))
       : ""
   );
+  const [favorites, setFavorites] = useState([]);
 
   const checkIngredients = (recipeLink, navigate) => {
     const self = recipeLink.split("/");
@@ -53,15 +55,27 @@ const MyProvider = (props) => {
     searchKeyword,
     recipeId,
     recipeIngHref,
+    favorites,
     setIsLoggedIn,
     setUser,
     setSearchKeyword,
     setRecipeId,
     setRecipeIngHref,
+    setFavorites,
     checkIngredients,
     setStorageItems,
     removeStorageItems,
   };
+
+  useEffect(() => {
+    (async () => {
+      const { data: favorites } = await axios.get(
+        "http://localhost:8080/favorites/get"
+      );
+      setFavorites([...favorites]);
+    })();
+  }, [favorites.length]);
+
   return (
     <MyContext.Provider value={state}>{props.children}</MyContext.Provider>
   );

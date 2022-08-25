@@ -7,6 +7,7 @@ import RecipeIngredients from "../components/RecipeIngredients/RecipeIngredients
 import NoResult from "../components/NoResult";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CarouselComponent from "../components/CarouselComponent/CarouselComponent";
+import Favorites from "../components/Favorites/Favorites";
 
 const HomePage = () => {
   const { isLoggedIn, searchKeyword, recipeId } = useContext(MyContext);
@@ -63,6 +64,7 @@ const HomePage = () => {
           path={`/${recipeId}`}
           element={<RecipeIngredients searchKeyword={searchKeyword} />}
         />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/no-result" element={<NoResult />} />
       </Routes>
       <LoadingSpinner spinner={spinner} hideSpinner={hideSpinner} />

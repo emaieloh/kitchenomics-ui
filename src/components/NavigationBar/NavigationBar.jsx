@@ -65,6 +65,10 @@ const NavigationBar = (props) => {
     navigate("/", { replace: true });
   };
 
+  const favoritesPage = () => {
+    navigate("/favorites", { replace: true });
+  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -92,6 +96,9 @@ const NavigationBar = (props) => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={homeButton}>Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={favoritesPage}>Favorites</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={logout}>Sign out</Nav.Link>
