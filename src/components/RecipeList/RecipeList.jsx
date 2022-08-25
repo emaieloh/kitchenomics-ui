@@ -1,5 +1,5 @@
 import React from "react";
-import Recipe from "./Recipe/Recipe";
+import Recipe from "../Recipe/Recipe";
 import PaginationComponent from "./PaginationComponent";
 
 const RecipeList = (props) => {
@@ -16,6 +16,7 @@ const RecipeList = (props) => {
     return (
       <Recipe
         key={recipe._links.self.href}
+        component={"RecipeList"}
         label={recipe.recipe.label}
         image={recipe.recipe.images.SMALL.url}
         href={recipe._links.self.href}

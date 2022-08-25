@@ -1,15 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import MyContext from "../../../MyContext/MyContext";
+import MyContext from "../../MyContext/MyContext";
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Col, Container } from "react-bootstrap";
 import "./Recipe.css";
 import HealthLabels from "./HealthLabels";
-import NutrientsList from "../../NutrientsList/NutrientsList";
+import NutrientsList from "../NutrientsList/NutrientsList";
 import Energy from "./Energy";
 import axios from "axios";
 
 const Recipe = (props) => {
   const {
+    component,
     label,
     image,
     href,
@@ -19,7 +20,9 @@ const Recipe = (props) => {
     totalNutrients,
   } = props;
 
-  const { checkIngredients, favorites, setFavorites } = useContext(MyContext);
+  const { user, checkIngredients, favorites, setFavorites } = useContext(
+    MyContext
+  );
 
   const [nutrientsList1, setNutrientsList1] = useState([]);
   const [nutrientsList2, setNutrientsList2] = useState([]);
@@ -30,6 +33,7 @@ const Recipe = (props) => {
     const { data: favorite } = await axios.post(
       "http://localhost:8080/favorites/add",
       {
+        user: user._id,
         label,
         image,
         href,
@@ -40,6 +44,30 @@ const Recipe = (props) => {
       }
     );
     setFavorites([...favorites, favorite]);
+    navigate("/favorites", { replace: true });
+  };
+
+  const removeFavorite = async () => {
+    const currentRecipeHref = href.split("/");
+    const currentRecipeId = currentRecipeHref[6].split("?");
+    const favoritesCopy = [...favorites];
+    let favoriteToRemove = "";
+
+    favoritesCopy.map((favorite) => {
+      const favoriteHref = favorite.href.split("/");
+      const favoriteId = favoriteHref[6].split("?");
+
+      if (currentRecipeId[0] === favoriteId[0]) {
+        favoritesCopy.splice(favoritesCopy.indexOf(favorite), 1);
+        favoriteToRemove = favorite._id;
+      }
+      return favoritesCopy;
+    });
+
+    await axios.delete(
+      `http://localhost:8080/favorites/delete/${favoriteToRemove}/${user._id}`
+    );
+    setFavorites([...favoritesCopy]);
   };
 
   useEffect(() => {
@@ -50,8 +78,11 @@ const Recipe = (props) => {
   return (
     <Card className="col-sm-12 col-md-6 col-lg-4 d-inline-block align-top recipe-font">
       <Row className="py-1 px-3">
-        <div onClick={addFavorite} className="text-end me-2 favorite">
-          Add to Favorites
+        <div
+          onClick={component === "Favorites" ? removeFavorite : addFavorite}
+          className="text-end me-2 favorite"
+        >
+          {component === "Favorites" ? "Remove" : "Add to Favorites"}
         </div>
       </Row>
       <Row className="p-3">

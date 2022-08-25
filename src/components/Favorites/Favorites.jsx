@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import MyContext from "../../MyContext/MyContext";
-import Recipe from "../RecipeList/Recipe/Recipe";
+import Recipe from "../Recipe/Recipe";
 
-const Favorite = () => {
+const Favorites = () => {
   const { favorites } = useContext(MyContext);
 
   const userFavorites = favorites.map((favorite) => {
     return (
       <Recipe
         key={favorite.href}
+        component={"Favorites"}
         label={favorite.label}
         image={favorite.image}
         href={favorite.href}
@@ -27,4 +28,4 @@ const Favorite = () => {
   );
 };
 
-export default Favorite;
+export default Favorites;

@@ -69,12 +69,14 @@ const MyProvider = (props) => {
 
   useEffect(() => {
     (async () => {
-      const { data: favorites } = await axios.get(
-        "http://localhost:8080/favorites/get"
-      );
-      setFavorites([...favorites]);
+      if (isLoggedIn) {
+        const { data: favorites } = await axios.get(
+          `http://localhost:8080/favorites/get/${user._id}`
+        );
+        setFavorites([...favorites]);
+      }
     })();
-  }, [favorites.length]);
+  }, [favorites.length, user._id]);
 
   return (
     <MyContext.Provider value={state}>{props.children}</MyContext.Provider>
